@@ -144,11 +144,16 @@ MonoBehaviour:
   _myStringArray:
   - sdfsdf
   - 12fes
-  _myFloatArraySecond: []
+  _myFloatArraySecond:
+  - 81.8
+  - 69.7
+  - 43.7
   _justiceLeagueArray: 
   _myData:
     _floatInRange: 0
-    _stringArray: []
+    _stringArray:
+    - 
+    - 
   _myDataArray:
   - _floatInRange: 0
     _stringArray: []

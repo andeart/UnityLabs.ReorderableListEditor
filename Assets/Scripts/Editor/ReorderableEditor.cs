@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
+﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 
 
@@ -15,22 +12,17 @@ namespace UnityReorderableEditor.V1.Editor
     [CanEditMultipleObjects]
     public class ReorderableEditor : UnityEditor.Editor
     {
-
         private Dictionary<string, ReorderableListProperty> _reorderableLists;
-
-        private Dictionary<ReorderableEditorFoldoutState, GUIStyle> _foldoutStates;
 
         protected virtual void OnEnable ()
         {
             _reorderableLists = new Dictionary<string, ReorderableListProperty> ();
-            _foldoutStates = new Dictionary<ReorderableEditorFoldoutState, GUIStyle> ();
         }
 
         ~ReorderableEditor ()
         {
             _reorderableLists.Clear ();
             _reorderableLists = null;
-            _foldoutStates = null;
         }
 
         public override void OnInspectorGUI ()
@@ -53,8 +45,7 @@ namespace UnityReorderableEditor.V1.Editor
 
         protected void DrawProperty (SerializedProperty property)
         {
-            bool isdefaultScriptProperty = property.name.Equals
-                                               ("m_Script")
+            bool isdefaultScriptProperty = property.name.Equals ("m_Script")
                                            && property.type.Equals ("PPtr<MonoScript>")
                                            && property.propertyType == SerializedPropertyType.ObjectReference
                                            && property.propertyPath.Equals ("m_Script");
@@ -90,142 +81,45 @@ namespace UnityReorderableEditor.V1.Editor
 
                 int indentSpace = EditorGUI.indentLevel * 15;
                 Rect lastRect = GUILayoutUtility.GetLastRect ();
-
-                // Full rect size: Rect rect = new Rect(indentSpace + 1f, lastRect.y + lastRect.height + 2f, Screen.width - 23f, 16f);
-
-
                 Rect rect = new Rect (indentSpace - 1f, lastRect.y + lastRect.height + 2f, Screen.width - 19f, 18f);
 
-                // Outermost border
-                Color color = Color.white * 0.63f;
-                color.a = 1f;
-                EditorGUI.DrawRect (rect, color);
+                ReorderableEditorUtils.DrawClosedFoldoutRect (rect);
 
-                // Inset border
-                color = Color.white * 0.80f;
-                color.a = 1f;
-                rect.x += 1f;
-                rect.width -= 2f;
-                rect.y += 1f;
-                rect.height -= 2f;
-                EditorGUI.DrawRect (rect, color);
-
-                // Main body color
-                color = Color.white * 0.87f;
-                color.a = 1f;
-                rect.x += 1f;
-                rect.width -= 1f;
-                rect.y += 1f;
-                rect.height -= 1f;
-                EditorGUI.DrawRect (rect, color);
-
-                // White top inset border
-                color = Color.white * 0.95f;
-                rect.y -= 1f;
-                rect.height = 1f;
-                EditorGUI.DrawRect (rect, color);
-
-                GUIStyle headerGuiStyle = new GUIStyle (EditorStyles.foldout);
-                Color defaultTextColor = headerGuiStyle.normal.textColor;
-                headerGuiStyle.hover.textColor = defaultTextColor;
-                headerGuiStyle.onHover.textColor = defaultTextColor;
-                headerGuiStyle.focused.textColor = defaultTextColor;
-                headerGuiStyle.onFocused.textColor = defaultTextColor;
-                headerGuiStyle.active.textColor = defaultTextColor;
-                headerGuiStyle.onActive.textColor = defaultTextColor;
-                headerGuiStyle.margin.top += 1;
-                headerGuiStyle.margin.left += 11;
-
-                // headerGuiStyle.margin.bottom = 8;
-                property.isExpanded = EditorGUILayout.Foldout
-                    (property.isExpanded, GetPropertyHeader (property), true, headerGuiStyle);
-
-                // GUIStyle subtitleGuiStyle = new GUIStyle(EditorStyles.centeredGreyMiniLabel);
-                // subtitleGuiStyle.alignment = TextAnchor.UpperLeft;
-                // EditorGUILayout.LabelField (property.arraySize == 0 ? "Empty." : string.Format ("Contains {0} {1}s.", property.arraySize, property.arrayElementType), subtitleGuiStyle);
+                property.isExpanded = EditorGUILayout.Foldout (property.isExpanded,
+                                                               ReorderableEditorUtils.GetPropertyDisplayNameFormatted (property),
+                                                               true,
+                                                               ReorderableEditorUtils.GetFoldoutStyle (ReorderableEditorFoldoutState.Closed));
 
                 EditorGUI.indentLevel--;
             } else
             {
-                // if (EditorGUILayout.BeginFadeGroup (listData.IsExpanded.faded))
-                listData.List.DoLayoutList ();
-
-                // EditorGUILayout.EndFadeGroup ();
+                listData.DoLayoutList ();
             }
 
             EditorGUILayout.GetControlRect (true, 2f);
         }
 
-        private string GetPropertyHeader (SerializedProperty property)
-        {
-            return string.Format ("{0}  [{1}]", property.displayName, property.arraySize);
-
-            //property.arraySize == 0 ? "Empty" : string.Format("Contains {0} {1}s", property.arraySize, property.arrayElementType)
-        }
-
-        protected object[] GetPropertyAttributes (SerializedProperty property)
-        {
-            return GetPropertyAttributes<PropertyAttribute> (property);
-        }
-
-        protected object[] GetPropertyAttributes<T> (SerializedProperty property) where T : Attribute
-        {
-            BindingFlags bindingFlags = BindingFlags.GetField
-                                        | BindingFlags.GetProperty
-                                        | BindingFlags.IgnoreCase
-                                        | BindingFlags.Instance
-                                        | BindingFlags.NonPublic
-                                        | BindingFlags.Public;
-
-            if (property.serializedObject.targetObject == null)
-            {
-                return null;
-            }
-
-            Type targetType = property.serializedObject.targetObject.GetType ();
-            FieldInfo field = targetType.GetField (property.name, bindingFlags);
-            if (field != null)
-            {
-                return field.GetCustomAttributes (typeof(T), true);
-            }
-
-            return null;
-        }
-
         private ReorderableListProperty GetReorderableList (SerializedProperty property)
         {
-            ReorderableListProperty ret;
-            if (_reorderableLists.TryGetValue (property.name, out ret))
+            ReorderableListProperty reorderableListProperty;
+            if (_reorderableLists.TryGetValue (property.name, out reorderableListProperty))
             {
-                ret.Property = property;
-                return ret;
+                reorderableListProperty.Property = property;
+                return reorderableListProperty;
             }
 
-            ret = new ReorderableListProperty (property);
-            _reorderableLists.Add (property.name, ret);
-            return ret;
+            reorderableListProperty = new ReorderableListProperty (property);
+            _reorderableLists[property.name] = reorderableListProperty;
+            return reorderableListProperty;
         }
 
 
-        private enum ReorderableEditorFoldoutState
-        {
-
-            Open,
-            Closed
-
-        }
-
-
-        #region Inner-class ReorderableListProperty
+        #region ReorderableListProperty
 
         private class ReorderableListProperty
         {
-
             private SerializedProperty _property;
-
-            // public AnimBool IsExpanded { get; private set; }
-
-            public ReorderableList List { get; private set; }
+            private ReorderableList _list;
 
             public SerializedProperty Property
             {
@@ -233,14 +127,12 @@ namespace UnityReorderableEditor.V1.Editor
                 set
                 {
                     _property = value;
-                    List.serializedProperty = _property;
+                    _list.serializedProperty = _property;
                 }
             }
 
             public ReorderableListProperty (SerializedProperty property)
             {
-                // IsExpanded = new AnimBool (property.isExpanded);
-                // IsExpanded.speed = 1f;
                 _property = property;
                 CreateList ();
             }
@@ -248,74 +140,60 @@ namespace UnityReorderableEditor.V1.Editor
             ~ReorderableListProperty ()
             {
                 _property = null;
-                List = null;
+                _list = null;
             }
 
             private void CreateList ()
             {
-                const bool draggable = true;
-                const bool header = true;
-                const bool add = true;
-                const bool remove = true;
-                List = new ReorderableList (Property.serializedObject, Property, draggable, header, add, remove);
-
-                //List.drawHeaderCallback += rect => _property.isExpanded = EditorGUI.ToggleLeft (rect, _property.displayName, _property.isExpanded, EditorStyles.boldLabel);
-                List.drawHeaderCallback += OnListDrawHeaderCallback;
-                List.onCanRemoveCallback += list => { return List.count > 0; };
-                List.drawElementCallback += drawElement;
-                List.elementHeightCallback += index =>
-                                              {
-                                                  return Mathf.Max
-                                                             (EditorGUIUtility.singleLineHeight,
-                                                              EditorGUI.GetPropertyHeight
-                                                                  (_property.GetArrayElementAtIndex
-                                                                       (index),
-                                                                   GUIContent.none,
-                                                                   true))
-                                                         + 4.0f;
-                                              };
+                _list = new ReorderableList (Property.serializedObject, Property, true, true, true, true);
+                _list.drawHeaderCallback += OnListDrawHeader;
+                _list.onCanRemoveCallback += GetListCanRemove;
+                _list.drawElementCallback += OnListDrawElement;
+                _list.elementHeightCallback += GetListElementHeight;
             }
 
-            private void OnListDrawHeaderCallback (Rect rect)
+            private void OnListDrawHeader(Rect rect)
             {
-                GUIStyle headerGuiStyle = new GUIStyle (EditorStyles.foldout);
-                Color defaultTextColor = headerGuiStyle.normal.textColor;
-                headerGuiStyle.hover.textColor = defaultTextColor;
-                headerGuiStyle.onHover.textColor = defaultTextColor;
-                headerGuiStyle.focused.textColor = defaultTextColor;
-                headerGuiStyle.onFocused.textColor = defaultTextColor;
-                headerGuiStyle.active.textColor = defaultTextColor;
-                headerGuiStyle.onActive.textColor = defaultTextColor;
-                _property.isExpanded = EditorGUI.Foldout
-                    (new Rect (rect.x + 10, rect.y, rect.width, rect.height),
-                     _property.isExpanded,
-                     _property.displayName,
-                     true,
-                     headerGuiStyle);
+                _property.isExpanded = EditorGUI.Foldout(new Rect(rect.x + 10, rect.y, rect.width, rect.height),
+                                                         _property.isExpanded,
+                                                         _property.displayName,
+                                                         true,
+                                                         ReorderableEditorUtils.GetFoldoutStyle (ReorderableEditorFoldoutState.Open));
             }
 
-            private void drawElement (Rect rect, int index, bool active, bool focused)
+            private bool GetListCanRemove(ReorderableList list)
             {
-                //rect.height = 16;
+                return _list.count > 0;
+            }
+
+            private void OnListDrawElement(Rect rect, int index, bool active, bool focused)
+            {
                 rect.x += 8;
                 rect.width -= 8;
                 rect.y += 2;
-                rect.height = EditorGUI.GetPropertyHeight
-                    (_property.GetArrayElementAtIndex (index), GUIContent.none, true);
+                rect.height = EditorGUI.GetPropertyHeight(_property.GetArrayElementAtIndex(index), GUIContent.none, true);
 
-                if (_property.GetArrayElementAtIndex (index).propertyType == SerializedPropertyType.Generic)
+                if (_property.GetArrayElementAtIndex(index).propertyType == SerializedPropertyType.Generic)
                 {
-                    EditorGUI.LabelField (rect, _property.GetArrayElementAtIndex (index).displayName);
+                    EditorGUI.LabelField(rect, _property.GetArrayElementAtIndex(index).displayName);
                 }
 
-                EditorGUI.PropertyField (rect, _property.GetArrayElementAtIndex (index), GUIContent.none, true);
-                List.elementHeight = rect.height + 4.0f;
+                EditorGUI.PropertyField(rect, _property.GetArrayElementAtIndex(index), GUIContent.none, true);
+                _list.elementHeight = rect.height + 4.0f;
             }
 
+            private float GetListElementHeight (int index)
+            {
+                return Mathf.Max (EditorGUIUtility.singleLineHeight, EditorGUI.GetPropertyHeight (_property.GetArrayElementAtIndex (index), GUIContent.none, true)) + 4.0f;
+            }
+
+            public void DoLayoutList ()
+            {
+                _list.DoLayoutList ();
+            }
         }
 
-        #endregion
-
+        #endregion ReorderableListProperty
     }
 
 }
