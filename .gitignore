@@ -1,0 +1,16 @@
+*.suo
+*.user
+*.userprefs
+
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+.vs/
+
+Library/
+Temp/
