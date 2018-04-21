@@ -6,23 +6,23 @@ using UnityEngine;
 
 
 
-namespace UnityReorderableEditor.V1.Editor
+namespace UnityReorderableListEditor.V1.Editor
 {
 
-    public enum ReorderableEditorFoldoutState
+    public enum ReorderableListEditorFoldoutState
     {
         Open,
         Closed
     }
 
-    public static class ReorderableEditorUtils
+    public static class ReorderableListEditorUtils
     {
 
-        private static Dictionary<ReorderableEditorFoldoutState, GUIStyle> _foldoutStyles;
+        private static Dictionary<ReorderableListEditorFoldoutState, GUIStyle> _foldoutStyles;
 
-        static ReorderableEditorUtils()
+        static ReorderableListEditorUtils()
         {
-            _foldoutStyles = new Dictionary<ReorderableEditorFoldoutState, GUIStyle> ();
+            _foldoutStyles = new Dictionary<ReorderableListEditorFoldoutState, GUIStyle> ();
         }
 
         public static object[] GetPropertyAttributes (SerializedProperty property)
@@ -86,7 +86,7 @@ namespace UnityReorderableEditor.V1.Editor
             return string.Format("{0}  [{1}]", property.displayName, property.arraySize);
         }
 
-        public static GUIStyle GetFoldoutStyle (ReorderableEditorFoldoutState state)
+        public static GUIStyle GetFoldoutStyle (ReorderableListEditorFoldoutState state)
         {
             ConfirmFoldoutGuiStyles ();
             return _foldoutStyles[state];
@@ -94,8 +94,8 @@ namespace UnityReorderableEditor.V1.Editor
 
         private static void ConfirmFoldoutGuiStyles()
         {
-            if (_foldoutStyles.ContainsKey(ReorderableEditorFoldoutState.Closed)
-                && _foldoutStyles.ContainsKey(ReorderableEditorFoldoutState.Open))
+            if (_foldoutStyles.ContainsKey(ReorderableListEditorFoldoutState.Closed)
+                && _foldoutStyles.ContainsKey(ReorderableListEditorFoldoutState.Open))
             {
                 return;
             }
@@ -108,11 +108,11 @@ namespace UnityReorderableEditor.V1.Editor
             guiStyle.onFocused.textColor = defaultTextColor;
             guiStyle.active.textColor = defaultTextColor;
             guiStyle.onActive.textColor = defaultTextColor;
-            _foldoutStyles[ReorderableEditorFoldoutState.Open] = guiStyle;
+            _foldoutStyles[ReorderableListEditorFoldoutState.Open] = guiStyle;
 
             guiStyle.margin.top += 1;
             guiStyle.margin.left += 11;
-            _foldoutStyles[ReorderableEditorFoldoutState.Closed] = guiStyle;
+            _foldoutStyles[ReorderableListEditorFoldoutState.Closed] = guiStyle;
         }
     }
 
