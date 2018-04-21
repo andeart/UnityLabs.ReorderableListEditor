@@ -63,15 +63,6 @@ namespace UnityReorderableListEditor.V1.Editor
                 GUI.enabled = false;
             }
 
-            // // // TODO: Use attributes to see if it explicitly needs to be drawn as a list.
-            // object[] attributes = ReorderableListEditorUtils.GetPropertyAttributes (property);
-            // if (attributes != null && attributes.Length >= 1)
-            // {
-            //     for (int i = 0; i < attributes.Length; i++)
-            //     {
-            //         Debug.Log (attributes[i].GetType ());
-            //     }
-            // }
             if (property.isArray && property.propertyType != SerializedPropertyType.String)
             {
                 DrawListProperty (property);
@@ -101,7 +92,7 @@ namespace UnityReorderableListEditor.V1.Editor
                 property.isExpanded = EditorGUILayout.Foldout (property.isExpanded,
                                                                ReorderableListEditorUtils.GetPropertyDisplayNameFormatted (property),
                                                                true,
-                                                               ReorderableListEditorUtils.GetFoldoutStyle (ReorderableListEditorFoldoutState.Closed));
+                                                               ReorderableListEditorUtils.GetFoldoutStyle (false));
 
                 EditorGUI.indentLevel--;
             } else
@@ -173,7 +164,7 @@ namespace UnityReorderableListEditor.V1.Editor
                                                           _property.isExpanded,
                                                           _property.displayName,
                                                           true,
-                                                          ReorderableListEditorUtils.GetFoldoutStyle (ReorderableListEditorFoldoutState.Open));
+                                                          ReorderableListEditorUtils.GetFoldoutStyle (true));
             }
 
             private bool GetListCanRemove (ReorderableList list)

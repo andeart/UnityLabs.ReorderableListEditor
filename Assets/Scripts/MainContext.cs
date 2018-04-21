@@ -5,19 +5,6 @@ using UnityEngine;
 
 namespace UnityReorderableListEditor.V1.Context
 {
-
-    [Flags]
-    public enum JusticeLeague
-    {
-        Batman = 1 << 0,
-        Superman = 1 << 1,
-        WonderWoman = 1 << 2,
-        Flash = 1 << 3,
-        GreenLantern = 1 << 4,
-        AquaMan = 1 << 5
-    }
-
-
     [Serializable]
     public struct MyData
     {
@@ -39,7 +26,10 @@ namespace UnityReorderableListEditor.V1.Context
 
         [SerializeField] private MyData[] _myDataArray;
 
-        [SerializeField] private AudioClip[] _clipArray;
+        [SerializeField] private ScriptableObject[] _myAssetArray;
+
+        // TODO: Handle serialization of generic type arrays.
+        [SerializeField] private MyGenericData<int>[] _myGenericDataIntArray;
     }
 
 }
