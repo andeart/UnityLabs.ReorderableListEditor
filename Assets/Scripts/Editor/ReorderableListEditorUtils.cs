@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
+﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -9,52 +7,21 @@ using UnityEngine;
 namespace UnityReorderableListEditor.V1.Editor
 {
 
-    public enum ReorderableListEditorFoldoutState
-    {
-        Open,
-        Closed
-    }
-
     public static class ReorderableListEditorUtils
     {
+        private static readonly Dictionary<bool, GUIStyle> _foldoutStyles;
 
-        private static Dictionary<ReorderableListEditorFoldoutState, GUIStyle> _foldoutStyles;
-
-        static ReorderableListEditorUtils()
+        static ReorderableListEditorUtils ()
         {
-            _foldoutStyles = new Dictionary<ReorderableListEditorFoldoutState, GUIStyle> ();
+            _foldoutStyles = new Dictionary<bool, GUIStyle> ();
         }
 
-        public static object[] GetPropertyAttributes (SerializedProperty property)
-        {
-            return GetPropertyAttributes<PropertyAttribute> (property);
-        }
-
-        public static object[] GetPropertyAttributes<T> (SerializedProperty property) where T : Attribute
-        {
-            const BindingFlags bindingFlags = BindingFlags.GetField
-                                              | BindingFlags.GetProperty
-                                              | BindingFlags.IgnoreCase
-                                              | BindingFlags.Instance
-                                              | BindingFlags.NonPublic
-                                              | BindingFlags.Public;
-
-            if (property.serializedObject.targetObject == null)
-            {
-                return null;
-            }
-
-            Type targetType = property.serializedObject.targetObject.GetType ();
-            FieldInfo field = targetType.GetField (property.name, bindingFlags);
-            return field == null ? null : field.GetCustomAttributes (typeof(T), true);
-        }
-
-        public static void DrawClosedFoldoutRect(Rect rect)
+        public static void DrawClosedFoldoutRect (Rect rect)
         {
             // Outermost border
             Color color = Color.white * 0.63f;
             color.a = 1f;
-            EditorGUI.DrawRect(rect, color);
+            EditorGUI.DrawRect (rect, color);
 
             // Inset border
             color = Color.white * 0.80f;
@@ -63,7 +30,7 @@ namespace UnityReorderableListEditor.V1.Editor
             rect.width -= 2f;
             rect.y += 1f;
             rect.height -= 2f;
-            EditorGUI.DrawRect(rect, color);
+            EditorGUI.DrawRect (rect, color);
 
             // Main body color
             color = Color.white * 0.87f;
@@ -72,35 +39,38 @@ namespace UnityReorderableListEditor.V1.Editor
             rect.width -= 1f;
             rect.y += 1f;
             rect.height -= 1f;
-            EditorGUI.DrawRect(rect, color);
+            EditorGUI.DrawRect (rect, color);
 
             // White top inset border
             color = Color.white * 0.95f;
             rect.y -= 1f;
             rect.height = 1f;
-            EditorGUI.DrawRect(rect, color);
+            EditorGUI.DrawRect (rect, color);
         }
 
-        public static string GetPropertyDisplayNameFormatted(SerializedProperty property)
+        public static string GetPropertyDisplayNameFormatted (SerializedProperty property)
         {
-            return string.Format("{0}  [{1}]", property.displayName, property.arraySize);
+            return string.Format ("{0}  [{1}]", property.displayName, property.arraySize);
         }
 
-        public static GUIStyle GetFoldoutStyle (ReorderableListEditorFoldoutState state)
+        /// <summary>
+        /// Returns GuiStyle for the foldout.
+        /// </summary>
+        /// <param name="isOpenStyle">True, if the GuiStyle being requested is for an open foldout. Else, (false) returns GuiStyle for closed foldout.</param>
+        public static GUIStyle GetFoldoutStyle (bool isOpenStyle)
         {
             ConfirmFoldoutGuiStyles ();
-            return _foldoutStyles[state];
+            return _foldoutStyles[isOpenStyle];
         }
 
-        private static void ConfirmFoldoutGuiStyles()
+        private static void ConfirmFoldoutGuiStyles ()
         {
-            if (_foldoutStyles.ContainsKey(ReorderableListEditorFoldoutState.Closed)
-                && _foldoutStyles.ContainsKey(ReorderableListEditorFoldoutState.Open))
+            if (_foldoutStyles.ContainsKey (true) && _foldoutStyles.ContainsKey (false))
             {
                 return;
             }
 
-            GUIStyle guiStyle = new GUIStyle(EditorStyles.foldout);
+            GUIStyle guiStyle = new GUIStyle (EditorStyles.foldout);
             Color defaultTextColor = guiStyle.normal.textColor;
             guiStyle.hover.textColor = defaultTextColor;
             guiStyle.onHover.textColor = defaultTextColor;
@@ -108,11 +78,11 @@ namespace UnityReorderableListEditor.V1.Editor
             guiStyle.onFocused.textColor = defaultTextColor;
             guiStyle.active.textColor = defaultTextColor;
             guiStyle.onActive.textColor = defaultTextColor;
-            _foldoutStyles[ReorderableListEditorFoldoutState.Open] = guiStyle;
+            _foldoutStyles[true] = guiStyle;
 
             guiStyle.margin.top += 1;
             guiStyle.margin.left += 11;
-            _foldoutStyles[ReorderableListEditorFoldoutState.Closed] = guiStyle;
+            _foldoutStyles[false] = guiStyle;
         }
     }
 
