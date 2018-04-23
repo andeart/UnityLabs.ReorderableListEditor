@@ -57,10 +57,14 @@ namespace UnityReorderableListEditor.V1.Editor
                                              && property.propertyType == SerializedPropertyType.ObjectReference
                                              && property.propertyPath.Equals ("m_Script");
 
-            bool wasGuiEnabled = GUI.enabled;
             if (isPropertyMonobehaviourId)
             {
-                GUI.enabled = false;
+                using (new EditorGUI.DisabledScope (true))
+                {
+                    EditorGUILayout.PropertyField (property);
+                }
+
+                return;
             }
 
             if (property.isArray && property.propertyType != SerializedPropertyType.String)
@@ -69,11 +73,6 @@ namespace UnityReorderableListEditor.V1.Editor
             } else
             {
                 EditorGUILayout.PropertyField (property, property.isExpanded);
-            }
-
-            if (isPropertyMonobehaviourId)
-            {
-                GUI.enabled = wasGuiEnabled;
             }
         }
 
