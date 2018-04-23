@@ -9,11 +9,10 @@ namespace UnityReorderableListEditor.V1.Editor
 {
 
     /// <summary>
-    /// Custom editor to draw object arrays in Unity Editor by default.
-    /// This custom editor allows you re-order array elements (unlike Unity's default behaviour).
-    /// This is inspired by the research in Valentin Simonov's blog article here: http://va.lent.in/unity-make-your-lists-functional-with-reorderablelist/ ,
-    /// along with some UI/UX tweaks.
-    /// The majority of functionality here is protected/virtual, making it easy to write custom editors that derive from this (in order to use the reordering feature).
+    /// Custom editor to allow re-orderable lists/arrays in Unity Inspector automatically.
+    /// This custom editor overrides Unity's default SerializedProperty drawing for arrays and lists.
+    /// This is inspired by the research in Valentin Simonov's blog article here: http: //va.lent.in/unity-make-your-lists-functional-with-reorderablelist/ , along with additional tweaks/functionality.
+    /// The majority of the Editor code in this project is protected/virtual, allowing developers an easy to write custom editors that use/extend this reordering feature.
     /// </summary>
     /// <inheritdoc />
     [CustomEditor (typeof(Object), true)]
