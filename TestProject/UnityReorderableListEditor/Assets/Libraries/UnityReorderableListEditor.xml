@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UnityReorderableListEditor</name>
+    </assembly>
+    <members>
+        <member name="T:Andeart.ReorderableLists.V1.Editor.ReorderableListEditor">
+            <summary>
+            Custom editor to allow re-orderable lists/arrays in Unity Inspector automatically.
+            This custom editor overrides Unity's default SerializedProperty drawing for arrays and lists.
+            This is inspired by the research in Valentin Simonov's blog article here: http://va.lent.in/unity-make-your-lists-functional-with-reorderablelist/ , along with additional tweaks/functionality.
+            The majority of the Editor code in this project is protected/virtual, allowing developers an easy to write custom editors that use/extend this reordering feature.
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="M:Andeart.ReorderableLists.V1.Editor.ReorderableListEditorUtils.GetFoldoutStyle(System.Boolean)">
+            <summary>
+            Returns GuiStyle for the foldout.
+            </summary>
+            <param name="isOpenStyle">True, if the GuiStyle being requested is for an open foldout. Else, (false) returns GuiStyle for closed foldout.</param>
+        </member>
+    </members>
+</doc>
