@@ -141,20 +141,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0193e50c693ea13418f03e484378a1f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _myData:
-    _floatInRange: 0.246
-    _stringArray:
-    - l00
-    - l01
-  _myDataArray:
-  - _floatInRange: 0.107
-    _stringArray:
-    - 00
-    - 01
-  - _floatInRange: 0.274
-    _stringArray:
-    - 10
-    - 11
+  _integers: 000000000100000002000000
+  _dataObjects:
+  - _name: Object0
+    _floatInRange: 0
+  - _name: Object1
+    _floatInRange: 0
+  - _name: Object2
+    _floatInRange: 0
+  _scriptableObjects:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!20 &1606369704
 Camera:
   m_ObjectHideFlags: 0
