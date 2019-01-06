@@ -13,26 +13,26 @@ The above gif is the automatic result of writing the following code:
 
 ```csharp
 
-    [Serializable]
-    public struct MyData
-    {
-        [SerializeField]
-        private string _name;
-        [SerializeField] [Range (0f, 1f)]
-        private float _floatInRange;
-    }
+[Serializable]
+public struct MyData
+{
+    [SerializeField]
+    private string _name;
+    [SerializeField] [Range (0f, 1f)]
+    private float _floatInRange;
+}
 
-    public class MainContext : MonoBehaviour
-    {
-        [SerializeField]
-        private int[] _integers;
+public class MainContext : MonoBehaviour
+{
+    [SerializeField]
+    private int[] _integers;
 
-        [SerializeField]
-        private MyData[] _dataObjects;
+    [SerializeField]
+    private MyData[] _dataObjects;
 
-        [SerializeField]
-        private ScriptableObject[] _scriptableObjects;
-    }
+    [SerializeField]
+    private ScriptableObject[] _scriptableObjects;
+}
 ```  
 
 ## Usage
