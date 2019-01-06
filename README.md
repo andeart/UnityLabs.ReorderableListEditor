@@ -1,13 +1,15 @@
 # UnityLabs.ReorderableListEditor
 
-Custom editor to allow re-orderable lists/arrays in Unity Inspector automatically.
+Custom editor to allow re-orderable lists/arrays in Unity Inspector by default.
 
-This is inspired by the research in Valentin Simonov's blog article here: http://va.lent.in/unity-make-your-lists-functional-with-reorderablelist/ , along with additional tweaks/functionality.
+![ReorderableListEditor.gif](Andeart.UnityLabs.ReorderableListEditor.gif)
+
+This is inspired by Valentin Simonov's blog article here: http://va.lent.in/unity-make-your-lists-functional-with-reorderablelist/ , along with additional tweaks/functionality.
 
 This custom editor overrides Unity's default SerializedProperty drawing for arrays and lists.  
 The majority of the Editor code in this project is protected/virtual, allowing developers an easy to write custom editors that use/extend this reordering feature.  
   
-Example:  
+The above gif is the automatic result of writing the following code:  
 
 ```
 #!c#
@@ -33,10 +35,6 @@ Example:
         private ScriptableObject[] _scriptableObjects;
     }
 ```  
-  
-...appears in the Inspector as this:  
-
-![ReorderableListEditor.gif](Andeart.UnityLabs.ReorderableListEditor.gif)
 
 ## Usage
 
