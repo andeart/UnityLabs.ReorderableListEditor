@@ -11,8 +11,7 @@ The majority of the Editor code in this project is protected/virtual, allowing d
   
 The above gif is the automatic result of writing the following code:  
 
-```
-#!c#
+```csharp
 
     [Serializable]
     public struct MyData
