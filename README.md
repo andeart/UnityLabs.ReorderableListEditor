@@ -1,4 +1,4 @@
-# UnityReorderableListEditor #
+# UnityLabs.ReorderableListEditor
 
 Custom editor to allow re-orderable lists/arrays in Unity Inspector automatically.
 
@@ -37,3 +37,13 @@ Example:
 ...appears in the Inspector as this:  
 
 ![ReorderableListEditor.gif](Andeart.UnityLabs.ReorderableListEditor.gif)
+
+## Usage
+
+* Drop the `UnityLabs.ReorderableListEditor.dll` file (from the [Releases tab](https://github.com/andeart/UnityLabs.ReorderableListEditor/releases)) in your Unity project. Any sub-directory under `Assets` should work fine.
+* Optional: Also drop the `UnityLabs.ReorderableListEditor.pdb` and ``UnityLabs.ReorderableListEditor.xml` files in the same location, if you're interested in debugging.
+* You're all set.
+
+## Feedback
+
+Please feel free to send merge requests, or drop me a message. Cheers!
