@@ -3,12 +3,12 @@ using UnityEditor;
 using UnityEngine;
 
 
-
 namespace Andeart.ReorderableLists.V1.Editor
 {
 
     internal static class ReorderableListEditorUtils
     {
+
         private static readonly Dictionary<bool, GUIStyle> _foldoutStyles;
 
         static ReorderableListEditorUtils ()
@@ -56,7 +56,10 @@ namespace Andeart.ReorderableLists.V1.Editor
         /// <summary>
         /// Returns GuiStyle for the foldout.
         /// </summary>
-        /// <param name="isOpenStyle">True, if the GuiStyle being requested is for an open foldout. Else, (false) returns GuiStyle for closed foldout.</param>
+        /// <param name="isOpenStyle">
+        /// True, if the GuiStyle being requested is for an open foldout. Else, (false) returns GuiStyle
+        /// for closed foldout.
+        /// </param>
         public static GUIStyle GetFoldoutStyle (bool isOpenStyle)
         {
             ConfirmFoldoutGuiStyles ();
@@ -84,6 +87,7 @@ namespace Andeart.ReorderableLists.V1.Editor
             guiStyle.margin.left += 11;
             _foldoutStyles[false] = guiStyle;
         }
+
     }
 
 }
