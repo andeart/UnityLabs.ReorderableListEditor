@@ -4,7 +4,7 @@ using UnityEditorInternal;
 using UnityEngine;
 
 
-namespace Andeart.ReorderableLists.V1.Editor
+namespace Andeart.UnityLabs.ReorderableListEditor.Editor
 {
 
     /// <summary>
