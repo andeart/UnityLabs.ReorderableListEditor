@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 
 
-namespace Andeart.ReorderableLists.V1.Editor
+namespace Andeart.UnityLabs.ReorderableListEditor.Editor
 {
 
     internal static class ReorderableListEditorUtils
