@@ -4,21 +4,23 @@ using UnityEditorInternal;
 using UnityEngine;
 
 
-
 namespace Andeart.ReorderableLists.V1.Editor
 {
 
     /// <summary>
     /// Custom editor to allow re-orderable lists/arrays in Unity Inspector automatically.
     /// This custom editor overrides Unity's default SerializedProperty drawing for arrays and lists.
-    /// This is inspired by the research in Valentin Simonov's blog article here: http://va.lent.in/unity-make-your-lists-functional-with-reorderablelist/ , along with additional tweaks/functionality.
-    /// The majority of the Editor code in this project is protected/virtual, allowing developers an easy to write custom editors that use/extend this reordering feature.
+    /// This is inspired by Valentin Simonov's blog article here:
+    /// http://va.lent.in/unity-make-your-lists-functional-with-reorderablelist/ , along with additional tweaks/functionality.
+    /// The majority of the Editor code in this project is protected/virtual, allowing developers to easily write custom
+    /// editors that use/extend this reordering feature.
     /// </summary>
     /// <inheritdoc />
     [CustomEditor (typeof(Object), true)]
     [CanEditMultipleObjects]
     public class ReorderableListEditor : UnityEditor.Editor
     {
+
         private Dictionary<string, ReorderableListProperty> _reorderableLists;
 
         protected virtual void OnEnable ()
@@ -89,7 +91,8 @@ namespace Andeart.ReorderableLists.V1.Editor
                 ReorderableListEditorUtils.DrawClosedFoldoutRect (rect);
 
                 property.isExpanded = EditorGUILayout.Foldout (property.isExpanded,
-                                                               ReorderableListEditorUtils.GetPropertyDisplayNameFormatted (property),
+                                                               ReorderableListEditorUtils
+                                                                   .GetPropertyDisplayNameFormatted (property),
                                                                true,
                                                                ReorderableListEditorUtils.GetFoldoutStyle (false));
 
@@ -120,14 +123,15 @@ namespace Andeart.ReorderableLists.V1.Editor
 
         private class ReorderableListProperty
         {
+
             private const float _elementVerticalMargin = 4f;
+            private ReorderableList _list;
 
             private SerializedProperty _property;
-            private ReorderableList _list;
 
             public SerializedProperty Property
             {
-                get { return _property; }
+                get => _property;
                 set
                 {
                     _property = value;
@@ -189,7 +193,10 @@ namespace Andeart.ReorderableLists.V1.Editor
 
             private float GetListElementHeight (int index)
             {
-                return Mathf.Max (EditorGUIUtility.singleLineHeight, EditorGUI.GetPropertyHeight (_property.GetArrayElementAtIndex (index), GUIContent.none, true))
+                return Mathf.Max (EditorGUIUtility.singleLineHeight,
+                                  EditorGUI.GetPropertyHeight (_property.GetArrayElementAtIndex (index),
+                                                               GUIContent.none,
+                                                               true))
                        + _elementVerticalMargin;
             }
 
@@ -197,9 +204,12 @@ namespace Andeart.ReorderableLists.V1.Editor
             {
                 _list.DoLayoutList ();
             }
+
         }
 
         #endregion ReorderableListProperty
+
+
     }
 
 }
