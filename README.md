@@ -36,4 +36,4 @@ Example:
   
 ...appears in the Inspector as this:  
 
-![ReorderableListEditor.gif](Andeart.UnityLabs.ReorderableListEditor)
+![ReorderableListEditor.gif](Andeart.UnityLabs.ReorderableListEditor.gif)
