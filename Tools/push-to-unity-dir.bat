@@ -8,11 +8,8 @@ set targetDir=%4
 
 cd /d %solutionDir%..
 
-echo current path is %cd%
-
 for /f "tokens=*" %%p in (.\Tools\unity-dirs.txt) do (
     set targetCopyDir=%solutionDir%..\%%p\%targetName%
-    echo child path is "!targetCopyDir!"
 
     if "%configurationName%"=="Release" (
         if not exist "!targetCopyDir!" mkdir "!targetCopyDir!"
