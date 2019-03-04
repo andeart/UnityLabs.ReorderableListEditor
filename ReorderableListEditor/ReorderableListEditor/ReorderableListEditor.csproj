@@ -7,8 +7,8 @@
     <ProjectGuid>{550D8F0F-E6FC-4FF8-9808-AF28331A24A2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Andeart.UnityLabs.ReorderableListEditor</RootNamespace>
-    <AssemblyName>UnityLabs.ReorderableListEditor</AssemblyName>
+    <RootNamespace>Andeart.ReorderableListEditor</RootNamespace>
+    <AssemblyName>Andeart.ReorderableListEditor</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -21,7 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\UnityLabs.ReorderableListEditor.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\Andeart.ReorderableListEditor.xml</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -32,7 +32,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
-    <DocumentationFile>bin\Release\UnityLabs.ReorderableListEditor.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\Andeart.ReorderableListEditor.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

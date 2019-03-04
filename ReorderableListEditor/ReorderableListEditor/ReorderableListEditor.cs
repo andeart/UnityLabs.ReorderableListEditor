@@ -4,7 +4,7 @@ using UnityEditorInternal;
 using UnityEngine;
 
 
-namespace Andeart.UnityLabs.ReorderableListEditor.Editor
+namespace Andeart.ReorderableListEditor
 {
 
     /// <summary>
@@ -18,9 +18,8 @@ namespace Andeart.UnityLabs.ReorderableListEditor.Editor
     /// <inheritdoc />
     [CustomEditor (typeof(Object), true)]
     [CanEditMultipleObjects]
-    public class ReorderableListEditor : UnityEditor.Editor
+    public class ReorderableListEditor : Editor
     {
-
         private Dictionary<string, ReorderableListProperty> _reorderableLists;
 
         protected virtual void OnEnable ()
@@ -123,7 +122,6 @@ namespace Andeart.UnityLabs.ReorderableListEditor.Editor
 
         private class ReorderableListProperty
         {
-
             private const float _elementVerticalMargin = 4f;
             private ReorderableList _list;
 
@@ -204,12 +202,9 @@ namespace Andeart.UnityLabs.ReorderableListEditor.Editor
             {
                 _list.DoLayoutList ();
             }
-
         }
 
         #endregion ReorderableListProperty
-
-
     }
 
 }

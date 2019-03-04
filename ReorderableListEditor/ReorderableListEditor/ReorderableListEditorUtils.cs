@@ -3,12 +3,11 @@ using UnityEditor;
 using UnityEngine;
 
 
-namespace Andeart.UnityLabs.ReorderableListEditor.Editor
+namespace Andeart.ReorderableListEditor
 {
 
     internal static class ReorderableListEditorUtils
     {
-
         private static readonly Dictionary<bool, GUIStyle> _foldoutStyles;
 
         static ReorderableListEditorUtils ()
@@ -87,7 +86,6 @@ namespace Andeart.UnityLabs.ReorderableListEditor.Editor
             guiStyle.margin.left += 11;
             _foldoutStyles[false] = guiStyle;
         }
-
     }
 
 }
