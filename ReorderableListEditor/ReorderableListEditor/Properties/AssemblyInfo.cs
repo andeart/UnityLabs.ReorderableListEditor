@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("UnityLabs.ReorderableListEditor")]
-[assembly: AssemblyDescription("Custom editor to allow re-orderable lists/arrays in Unity Inspector automatically.")]
+[assembly: AssemblyTitle("Andeart.ReorderableListEditor")]
+[assembly: AssemblyDescription("Custom editor that draws any lists/arrays in Unity Inspector as re-orderable by default.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Andeart")]
-[assembly: AssemblyProduct("UnityLabs.ReorderableListEditor")]
+[assembly: AssemblyProduct("Andeart.ReorderableListEditor")]
 [assembly: AssemblyCopyright("Copyright © ANURAG DEVANAPALLY 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.4.0")]
-[assembly: AssemblyFileVersion("1.0.4.0")]
+[assembly: AssemblyVersion("2.0.1.0")]
+[assembly: AssemblyFileVersion("2.0.1.0")]
