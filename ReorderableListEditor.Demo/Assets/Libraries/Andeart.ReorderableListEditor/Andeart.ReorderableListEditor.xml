@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>UnityLabs.ReorderableListEditor</name>
+        <name>Andeart.ReorderableListEditor</name>
     </assembly>
     <members>
-        <member name="T:Andeart.UnityLabs.ReorderableListEditor.Editor.ReorderableListEditor">
+        <member name="T:Andeart.ReorderableListEditor.ReorderableListEditor">
             <summary>
             Custom editor to allow re-orderable lists/arrays in Unity Inspector automatically.
             This custom editor overrides Unity's default SerializedProperty drawing for arrays and lists.
@@ -15,7 +15,7 @@
             </summary>
             <inheritdoc />
         </member>
-        <member name="M:Andeart.UnityLabs.ReorderableListEditor.Editor.ReorderableListEditorUtils.GetFoldoutStyle(System.Boolean)">
+        <member name="M:Andeart.ReorderableListEditor.ReorderableListEditorUtils.GetFoldoutStyle(System.Boolean)">
             <summary>
             Returns GuiStyle for the foldout.
             </summary>

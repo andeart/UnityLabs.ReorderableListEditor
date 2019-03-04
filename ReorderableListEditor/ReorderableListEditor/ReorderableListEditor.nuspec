@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <license type="file">LICENSE.md</license>
+    <projectUrl>https://github.com/andeart/UnityLabs.ReorderableListEditor</projectUrl>
+    <iconUrl>https://secure.gravatar.com/avatar/54042edbdd6a854f25a7ce72b99b78a0.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>QOL updates, including root namespace</releaseNotes>
+    <copyright>$copyright$</copyright>
+    <tags>unity unity3d unity-editor serialization inspector editor</tags>
+  </metadata>
+  <files>
+    <file src="..\..\LICENSE.md" target="" />
+    <file src="..\..\README.md" target="" />
+  </files>
+</package>
