@@ -54,4 +54,7 @@
     <Compile Include="ReorderableListEditorUtils.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>call "$(SolutionDir)..\Tools\push-to-unity-dir.bat" $(SolutionDir) $(TargetName) $(ConfigurationName) $(TargetDir)</PostBuildEvent>
+  </PropertyGroup>
 </Project>
