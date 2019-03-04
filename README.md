@@ -1,8 +1,11 @@
 # UnityLabs.ReorderableListEditor
 
-Custom editor to allow re-orderable lists/arrays in Unity Inspector by default.
+[![nuget-release](https://img.shields.io/nuget/v/Andeart.ReorderableListEditor.svg)](https://www.nuget.org/packages/Andeart.ReorderableListEditor)<br />
+[![github-release](https://img.shields.io/github/release/andeart/UnityLabs.ReorderableListEditor.svg)](https://github.com/andeart/UnityLabs.ReorderableListEditor/releases/latest)<br/>
 
-![ReorderableListEditor.gif](Andeart.UnityLabs.ReorderableListEditor.gif)
+Editor that draws all lists/arrays in Unity Inspector as re-orderable by default.
+
+![ReorderableListEditor.gif](https://user-images.githubusercontent.com/6226493/53707244-0870ee00-3de3-11e9-8f00-e337539401ef.gif)
 
 This is inspired by Valentin Simonov's blog article here: http://va.lent.in/unity-make-your-lists-functional-with-reorderablelist/ , along with additional tweaks/functionality.
 
@@ -35,11 +38,12 @@ public class MainContext : MonoBehaviour
 }
 ```  
 
-## Usage
+## Installation and Usage
 
-* Drop the `UnityLabs.ReorderableListEditor.dll` file (from the [Releases tab](https://github.com/andeart/UnityLabs.ReorderableListEditor/releases)) in your Unity project. Any sub-directory under `Assets` should work fine.
-* Optional: Also drop the `UnityLabs.ReorderableListEditor.pdb` and ``UnityLabs.ReorderableListEditor.xml` files in the same location, if you're interested in debugging.
-* You're all set.
+- Download the `Andeart.ReorderableListEditor.dll` file from [the NuGet page](https://www.nuget.org/packages/Andeart.ReorderableListEditor), or from [the Github releases page](https://github.com/andeart/UnityLabs.ReorderableListEditor/releases/latest).
+- Add this file anywhere in your Unity project. Any sub-directory under Assets will work- **it does not need to be under an Editor folder**.
+- Optional: Also drop the `Andeart.ReorderableListEditor.pdb` and `Andeart.ReorderableListEditor.xml` files in the same location if you're interested in debugging.
+- All of your serialized/public arrays/lists should be re-orderable by default. Work some magic.
 
 ## Feedback
 
