@@ -2,7 +2,7 @@
 
 Custom editor to allow re-orderable lists/arrays in Unity Inspector by default.
 
-![ReorderableListEditor.gif](Andeart.UnityLabs.ReorderableListEditor.gif)
+![ReorderableListEditor.gif](https://user-images.githubusercontent.com/6226493/53707244-0870ee00-3de3-11e9-8f00-e337539401ef.gif)
 
 This is inspired by Valentin Simonov's blog article here: http://va.lent.in/unity-make-your-lists-functional-with-reorderablelist/ , along with additional tweaks/functionality.
 
