@@ -84,6 +84,8 @@ class NetCopy:
 
                 # Copy new files
                 source_file_path = self.__full_path(self.__asdir_str, self.__asname, astype)
+                if not self.__is_file(source_file_path):
+                    self.__exit_with_error(1, f"Could not find expected source file at: {source_file_path}")
                 target_file_path = self.__full_path(targetdir, self.__asname, astype)                
                 self.__logger.log(f"Copying {source_file_path} to {target_file_path}...")
                 copyfile(source_file_path, target_file_path)
