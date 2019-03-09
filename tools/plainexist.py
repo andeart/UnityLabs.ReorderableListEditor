@@ -19,15 +19,18 @@ class PlainExist:
         parser.add_argument("--files", "-f", type=str, metavar="FilePaths", default=None, help="A semicolon-separated list of paths to the files to check. Use at least one of this or -d for directories.")
         parser.add_argument("--dirs", "-d", type=str, metavar="DirectoryPaths", default=None, help="A semicolon-separated list of paths to the directories to check. Use at least one of this or -f for files.")
         args = parser.parse_args()
-        self.__filepaths = args.files.split(";")
-        self.__dirpaths = args.dirs.split(";")
 
-        self.__logger.log(f"\File paths: {self.__filepaths}"
-                + f"Directory paths: {self.__dirpaths}",
-                LogLevel.WARNING)
-
+        self.__logger.log(f"Unparsed file paths: {self.__filepaths}"
+                            + f"\nUnparsed directory paths: {self.__dirpaths}",
+                            LogLevel.WARNING)
                 
         if (self.__filepaths == None and self.__dirpaths == None): self.__exit_with_error(1, "Neither file nor directory paths were provided for check.", parser.format_help())
+            
+        self.__filepaths = self.__filepaths.split(";")
+        self.__dirpaths = self.__dirpaths.split(";")
+        self.__logger.log(f"Parsed file paths: {self.__filepaths}"
+                            + f"\nParsed directory paths: {self.__dirpaths}",
+                            LogLevel.WARNING)
 
 
     def check(self):
