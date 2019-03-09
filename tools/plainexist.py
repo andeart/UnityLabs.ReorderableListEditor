@@ -43,6 +43,8 @@ class PlainExist:
             else:
                 self.__exit_with_error(1, f"Directory was not successfully found at: {dirpath}")
 
+        self.__logger.log("All files and directories were successfully verified.", LogLevel.SUCCESS)
+
 
     def __exit_with_error(self, error_code, error_msg, usage_info = None):
         self.__logger.log("ERROR! Exiting..."
