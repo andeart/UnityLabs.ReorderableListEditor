@@ -11,5 +11,5 @@ install:
 script:
   - python3 ./tools/netrestore.py -s "$TRAVIS_SOLUTION"
   - python3 ./tools/netbuild.py -s "$TRAVIS_SOLUTION" -c "Release"
-  - python3 ./tools/netcopy.py -a "$ASSEMBLY_NAME" -d concat(ASSEMBLY_BIN_PATH, "Release") -e "dll;xml;pdb" -t "./tools/unity-dirs.txt" -c
+  - python3 ./tools/netcopy.py -a "$ASSEMBLY_NAME" -d concat($ASSEMBLY_BIN_PATH, "Release") -e "dll;xml;pdb" -t "./tools/unity-dirs.txt" -c
   - python3 ./tools/plainexist.py -f "./ReorderableListEditor.Demo/Assets/Libraries/Andeart.ReorderableListEditor/Andeart.ReorderableListEditor.dll;./ReorderableListEditor.Demo/Assets/Libraries/Andeart.ReorderableListEditor/Andeart.ReorderableListEditor.xml;./ReorderableListEditor.Demo/Assets/Libraries/Andeart.ReorderableListEditor/Andeart.ReorderableListEditor.pdb"
