@@ -4,7 +4,6 @@ import os
 import pathlib
 import platform
 
-from fodyclean import FodyCleaner
 from processrun import ProcessRunner
 from shyprint import Logger, LogLevel
 
