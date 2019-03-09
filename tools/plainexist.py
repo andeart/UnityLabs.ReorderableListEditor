@@ -19,6 +19,8 @@ class PlainExist:
         parser.add_argument("--files", "-f", type=str, metavar="FilePaths", default=None, help="A semicolon-separated list of paths to the files to check. Use at least one of this or -d for directories.")
         parser.add_argument("--dirs", "-d", type=str, metavar="DirectoryPaths", default=None, help="A semicolon-separated list of paths to the directories to check. Use at least one of this or -f for files.")
         args = parser.parse_args()
+        self.__filepaths = args.files
+        self.__dirpaths = args.dirs
 
         self.__logger.log(f"Unparsed file paths: {self.__filepaths}"
                             + f"\nUnparsed directory paths: {self.__dirpaths}",
