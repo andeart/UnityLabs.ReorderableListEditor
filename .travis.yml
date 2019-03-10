@@ -12,14 +12,10 @@ env:
   matrix:
     - CONFIG_NAME=Release
     - CONFIG_NAME=Debug
-before_install:
-  - echo $LULLAPY_ROOT
-  - export PYTHONPATH=$LULLAPY_ROOT:$PYTHONPATH
-  - chmod -R a+x $LULLAPY_ROOT
 install:
-  - pip3 install -r requirements.txt
+  - pip3 install -e $LULLAPY_ROOT
 script:
   - python3 -m andeart.lullapy.netrestore -s "$TRAVIS_SOLUTION"
   - python3 -m andeart.lullapy.netbuild -s "$TRAVIS_SOLUTION" -c "$CONFIG_NAME"
   - python3 -m andeart.lullapy.netcopy -a "$ASSEMBLY_NAME" -d "$ASSEMBLY_BIN_PATH/$CONFIG_NAME" -e "dll;xml;pdb" -t "./unity-dirs.txt" -c
-  - python3 -m andeart.lullapy.plainexist -f "./ReorderableListEditor.Demo/Assets/Libraries/Andeart.ReorderableListEditor/Andeart.ReorderableListEditor.dll;./ReorderableListEditor.Demo/Assets/Libraries/Andeart.ReorderableListEditor/Andeart.ReorderableListEditor.xml;./ReorderableListEditor.Demo/Assets/Libraries/Andeart.ReorderableListEditor/Andeart.ReorderableListEditor.pdb"
+  - python3 -m andeart.lullapy.plainexist -f "./ReorderableListEditor.Demo/Assets/Libraries/$ASSEMBLY_NAME/$ASSEMBLY_NAME.dll;./ReorderableListEditor.Demo/Assets/Libraries/$ASSEMBLY_NAME/$ASSEMBLY_NAME.xml;./ReorderableListEditor.Demo/Assets/Libraries/$ASSEMBLY_NAME/$ASSEMBLY_NAME.pdb"
