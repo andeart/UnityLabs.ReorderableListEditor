@@ -1,0 +1,4 @@
+[submodule "lullapy"]
+	path = lullapy
+	url = https://github.com/andeart/lullapy.git
+	branch = master
