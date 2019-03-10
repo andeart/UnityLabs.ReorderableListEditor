@@ -8,7 +8,7 @@ env:
   - CONFIG_NAME=Release
   - CONFIG_NAME=Debug
 before_install:
-  - chmod a+x ./tools/*
+  - chmod a+x $LULLAPY_ROOT/*
 install:
   - pip3 install -r requirements.txt
 script:
