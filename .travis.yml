@@ -5,14 +5,21 @@ dotnet: 2.2.104
 python: 3.7
 mono: latest
 env:
-  - CONFIG_NAME=Release
-  - CONFIG_NAME=Debug
+  global:
+    - LULLAPY_ROOT=$TRAVIS_BUILD_DIR/lullapy
+    - ASSEMBLY_NAME=Andeart.ReorderableListEditor
+    - ASSEMBLY_BIN_PATH=./ReorderableListEditor/ReorderableListEditor/bin
+  matrix:
+    - CONFIG_NAME=Release
+    - CONFIG_NAME=Debug
 before_install:
-  - chmod a+x $LULLAPY_ROOT/*
+  - echo $LULLAPY_ROOT
+  - export PYTHONPATH=$LULLAPY_ROOT:$PYTHONPATH
+  - chmod -R a+x $LULLAPY_ROOT
 install:
   - pip3 install -r requirements.txt
 script:
-  - python3 $LULLAPY_ROOT/netrestore.py -s "$TRAVIS_SOLUTION"
-  - python3 $LULLAPY_ROOT/netbuild.py -s "$TRAVIS_SOLUTION" -c "c"
-  - python3 $LULLAPY_ROOT/netcopy.py -a "$ASSEMBLY_NAME" -d "$ASSEMBLY_BIN_PATH/$CONFIG_NAME" -e "dll;xml;pdb" -t "./unity-dirs.txt" -c
-  - python3 $LULLAPY_ROOT/plainexist.py -f "./ReorderableListEditor.Demo/Assets/Libraries/Andeart.ReorderableListEditor/Andeart.ReorderableListEditor.dll;./ReorderableListEditor.Demo/Assets/Libraries/Andeart.ReorderableListEditor/Andeart.ReorderableListEditor.xml;./ReorderableListEditor.Demo/Assets/Libraries/Andeart.ReorderableListEditor/Andeart.ReorderableListEditor.pdb"
+  - python3 -m andeart.lullapy.netrestore -s "$TRAVIS_SOLUTION"
+  - python3 -m andeart.lullapy.netbuild -s "$TRAVIS_SOLUTION" -c "$CONFIG_NAME"
+  - python3 -m andeart.lullapy.netcopy -a "$ASSEMBLY_NAME" -d "$ASSEMBLY_BIN_PATH/$CONFIG_NAME" -e "dll;xml;pdb" -t "./unity-dirs.txt" -c
+  - python3 -m andeart.lullapy.plainexist -f "./ReorderableListEditor.Demo/Assets/Libraries/Andeart.ReorderableListEditor/Andeart.ReorderableListEditor.dll;./ReorderableListEditor.Demo/Assets/Libraries/Andeart.ReorderableListEditor/Andeart.ReorderableListEditor.xml;./ReorderableListEditor.Demo/Assets/Libraries/Andeart.ReorderableListEditor/Andeart.ReorderableListEditor.pdb"
