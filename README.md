@@ -1,8 +1,8 @@
 # UnityLabs.ReorderableListEditor
 
-[![travis](https://img.shields.io/travis/andeart/UnityLabs.ReorderableListEditor.svg)](https://travis-ci.org/andeart/UnityLabs.ReorderableListEditor)<br />
-[![nuget-release](https://img.shields.io/nuget/v/Andeart.ReorderableListEditor.svg)](https://www.nuget.org/packages/Andeart.ReorderableListEditor)<br />
-[![github-release](https://img.shields.io/github/release/andeart/UnityLabs.ReorderableListEditor.svg)](https://github.com/andeart/UnityLabs.ReorderableListEditor/releases/latest)<br/>
+
+[![nuget-release](https://img.shields.io/nuget/v/Andeart.ReorderableListEditor.svg)](https://www.nuget.org/packages/Andeart.ReorderableListEditor) [![nuget-dls](https://img.shields.io/nuget/dt/Andeart.ReorderableListEditor.svg)](https://www.nuget.org/packages/Andeart.ReorderableListEditor)<br />
+[![github-release](https://img.shields.io/github/release/andeart/UnityLabs.ReorderableListEditor.svg)](https://github.com/andeart/UnityLabs.ReorderableListEditor/releases/latest) [![nuget-dls](https://img.shields.io/github/downloads/andeart/UnityLabs.ReorderableListEditor/total.svg)](https://github.com/andeart/UnityLabs.ReorderableListEditor/releases/latest)<br/>
 
 Editor that draws all lists/arrays in Unity Inspector as re-orderable by default.
 
