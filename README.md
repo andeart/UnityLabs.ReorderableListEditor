@@ -1,8 +1,8 @@
 # UnityLabs.ReorderableListEditor
 
 
-[![nuget-release](https://img.shields.io/nuget/v/Andeart.ReorderableListEditor.svg)](https://www.nuget.org/packages/Andeart.ReorderableListEditor) [![nuget-dls](https://img.shields.io/nuget/dt/Andeart.ReorderableListEditor.svg)](https://www.nuget.org/packages/Andeart.ReorderableListEditor)<br />
-[![github-release](https://img.shields.io/github/release/andeart/UnityLabs.ReorderableListEditor.svg)](https://github.com/andeart/UnityLabs.ReorderableListEditor/releases/latest) [![nuget-dls](https://img.shields.io/github/downloads/andeart/UnityLabs.ReorderableListEditor/total.svg)](https://github.com/andeart/UnityLabs.ReorderableListEditor/releases/latest)<br/>
+[![nuget-release](https://img.shields.io/nuget/v/Andeart.ReorderableListEditor.svg?logo=nuget&logoSize=auto)](https://www.nuget.org/packages/Andeart.ReorderableListEditor) [![nuget-dls](https://img.shields.io/nuget/dt/Andeart.ReorderableListEditor.svg?logo=nuget&logoSize=auto)](https://www.nuget.org/packages/Andeart.ReorderableListEditor)<br />
+[![github-release](https://img.shields.io/github/release/andeart/UnityLabs.ReorderableListEditor.svg?label=github&logo=github&logoSize=auto)](https://github.com/andeart/UnityLabs.ReorderableListEditor/releases/latest) [![github-dls](https://img.shields.io/github/downloads/andeart/UnityLabs.ReorderableListEditor/total.svg?logo=github&logoSize=auto)](https://github.com/andeart/UnityLabs.ReorderableListEditor/releases/latest)<br/>
 
 Editor that draws all lists/arrays in Unity Inspector as re-orderable by default.
 
